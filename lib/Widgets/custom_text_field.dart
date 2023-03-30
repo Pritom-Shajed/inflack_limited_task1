@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inflack_limited/Utils/dimensions.dart';
 
 class CustomTextField extends StatelessWidget {
   String hintText;
@@ -11,10 +12,10 @@ class CustomTextField extends StatelessWidget {
         hintText: hintText,
         enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: Colors.transparent),
-            borderRadius: BorderRadius.circular(10)),
+            borderRadius: BorderRadius.circular(Dimensions.radius8)),
         focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: Colors.transparent),
-            borderRadius: BorderRadius.circular(10)),
+            borderRadius: BorderRadius.circular(Dimensions.radius8)),
       ),
     );
   }
