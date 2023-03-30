@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:inflack_limited/Utils/colors.dart';
 import 'package:inflack_limited/Utils/dimensions.dart';
 import 'package:inflack_limited/View/home/dashboard/first_part.dart';
+import 'package:inflack_limited/View/home/dashboard/others.dart';
 import 'package:inflack_limited/Widgets/big_text.dart';
 import 'package:inflack_limited/Widgets/combined_text.dart';
 import 'package:inflack_limited/Widgets/medium_text.dart';
@@ -20,7 +21,7 @@ class DashboardPage extends StatelessWidget {
           children: [
 
             //কোর্সসমূহ
-            FirstPart(
+            Courses(
                 titleText: 'কোর্সসমূহ',
                 itemText: 'বিজ্ঞান',
                 itemImg: 'assets/images/science.png'),
@@ -32,10 +33,7 @@ class DashboardPage extends StatelessWidget {
             ),
 
             //অন্যান্য
-            FirstPart(
-                titleText: 'অন্যান্য',
-                itemText: 'শ্রেণী কার্যক্রম',
-                itemImg: 'assets/images/schedule.png'),
+            Others(titleText: 'অন্যান্য', itemText: 'শ্রেণী কার্যক্রম',),
 
             //পরীক্ষাসমূহ
             Row(
