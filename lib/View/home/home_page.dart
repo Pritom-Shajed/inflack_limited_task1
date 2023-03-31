@@ -13,14 +13,40 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   int _currentIndex = 2;
 
+  Color datesBgColor = Colors.transparent;
+
   final tabs = [
-    const Center(child: Text('মেনু'),),
-    const Center(child: Text('ইনবক্স'),),
+    const Center(
+      child: Text('মেনু'),
+    ),
+    const Center(
+      child: Text('ইনবক্স'),
+    ),
     const DashboardPage(),
-    const Center(child: Text('প্রোফাইল'),),
+    const Center(
+      child: Text('প্রোফাইল'),
+    ),
+  ];
+
+  final days = [
+    'শনি',
+    'রবি',
+    'সোম',
+    'মঙ্গল',
+    'বুধ',
+    'বৃহঃ',
+    'শুক্র',
+  ];
+  final dates = [
+    '১২',
+    '১৩',
+    '১৪',
+    '১৫',
+    '১৬',
+    '১৭',
+    '১৮',
   ];
 
   @override
@@ -72,24 +98,33 @@ class _HomePageState extends State<HomePage> {
                     ),
                     CircleAvatar(
                       radius: Dimensions.radius24,
-                      backgroundImage: const AssetImage('assets/images/avatar.png'),
+                      backgroundImage:
+                          const AssetImage('assets/images/avatar.png'),
                     )
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(7,(index) => Column(
-                            children: [
-                              SmallText(
-                                text: 'শনি',
-                                color: Colors.white60,
-                              ),
-                              SmallText(
-                                text: '১২',
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ],
+                  children: List.generate(
+                      days.length,
+                      (index) => Container(
+                        padding: EdgeInsets.all(Dimensions.radius8),
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(Dimensions.radius8)),
+                            child: Column(
+                              children: [
+                                SmallText(
+                                  text: days[index],
+                                  color: Colors.white60,
+                                ),
+                                SmallText(
+                                  text: dates[index],
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ],
+                            ),
                           )),
                 ),
               ],
@@ -103,14 +138,43 @@ class _HomePageState extends State<HomePage> {
         elevation: 20,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: AppColor.mainColor2,
-        selectedLabelStyle: const TextStyle(color: AppColor.mainColor2, fontWeight: FontWeight.bold),
+        selectedLabelStyle: const TextStyle(
+            color: AppColor.mainColor2, fontWeight: FontWeight.bold),
         items: [
-          BottomNavigationBarItem(icon: Image.asset('assets/icons/menu.png', color: _currentIndex == 0 ? AppColor.mainColor2:AppColor.greyColor,), label: 'মেনু',),
-          BottomNavigationBarItem(icon: Image.asset('assets/icons/inbox.png', color: _currentIndex == 1 ? AppColor.mainColor2:AppColor.greyColor,), label: 'ইনবক্স'),
-          BottomNavigationBarItem(icon: Image.asset('assets/icons/dashboard.png', color: _currentIndex == 2 ? AppColor.mainColor2:AppColor.greyColor,), label: 'ড্যাশবোর্ড'),
-          BottomNavigationBarItem(icon: Image.asset('assets/icons/profile.png', color: _currentIndex == 3 ? AppColor.mainColor2:AppColor.greyColor,), label: 'প্রোফাইল'),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/icons/menu.png',
+              color:
+                  _currentIndex == 0 ? AppColor.mainColor2 : AppColor.greyColor,
+            ),
+            label: 'মেনু',
+          ),
+          BottomNavigationBarItem(
+              icon: Image.asset(
+                'assets/icons/inbox.png',
+                color: _currentIndex == 1
+                    ? AppColor.mainColor2
+                    : AppColor.greyColor,
+              ),
+              label: 'ইনবক্স'),
+          BottomNavigationBarItem(
+              icon: Image.asset(
+                'assets/icons/dashboard.png',
+                color: _currentIndex == 2
+                    ? AppColor.mainColor2
+                    : AppColor.greyColor,
+              ),
+              label: 'ড্যাশবোর্ড'),
+          BottomNavigationBarItem(
+              icon: Image.asset(
+                'assets/icons/profile.png',
+                color: _currentIndex == 3
+                    ? AppColor.mainColor2
+                    : AppColor.greyColor,
+              ),
+              label: 'প্রোফাইল'),
         ],
-        onTap: (index){
+        onTap: (index) {
           setState(() {
             _currentIndex = index;
           });

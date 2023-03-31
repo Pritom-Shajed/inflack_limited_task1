@@ -39,19 +39,22 @@ class Others extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             BigText(text: titleText),
-            Row(
-              children: [
-                SmallText(
-                  text: 'সবগুলো দেখুন',
-                  color: AppColor.mainColor2,
-                  fontWeight: FontWeight.bold,
-                ),
-                Icon(
-                  Icons.arrow_forward,
-                  color: AppColor.mainColor2,
-                  size: Dimensions.iconSize18,
-                ),
-              ],
+            InkWell(
+              onTap: (){},
+              child: Row(
+                children: [
+                  SmallText(
+                    text: 'সবগুলো দেখুন',
+                    color: AppColor.mainColor2,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  Icon(
+                    Icons.arrow_forward,
+                    color: AppColor.mainColor2,
+                    size: Dimensions.iconSize18,
+                  ),
+                ],
+              ),
             )
           ],
         ),

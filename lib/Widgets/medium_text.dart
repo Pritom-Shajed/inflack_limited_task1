@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:inflack_limited/Utils/dimensions.dart';
 
 class MediumText extends StatelessWidget {
-  String text;
+  final String text;
   Color color;
-  double size;
+  double? size = Dimensions.textSize14;
   TextDecoration textDecoration;
   FontWeight fontWeight;
 
@@ -11,8 +12,8 @@ class MediumText extends StatelessWidget {
   MediumText(
       {Key? key,
         required this.text,
-        this.color = Colors.black54,
-        this.size = 14,
+        this.color = const Color(0xFF223e4b),
+        this.size,
         this.textDecoration = TextDecoration.none, this.fontWeight = FontWeight.bold})
       : super(key: key);
 

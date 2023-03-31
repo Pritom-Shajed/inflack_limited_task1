@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:inflack_limited/Utils/colors.dart';
+import 'package:inflack_limited/Utils/dimensions.dart';
 
 class SmallText extends StatelessWidget {
   String text;
   Color color;
-  double size;
+  double? size = Dimensions.textSize14;
   TextDecoration textDecoration;
   FontWeight fontWeight;
 
@@ -12,7 +14,7 @@ class SmallText extends StatelessWidget {
       {Key? key,
       required this.text,
       this.color = Colors.grey,
-      this.size = 14,
+      this.size,
       this.textDecoration = TextDecoration.none, this.fontWeight = FontWeight.w500})
       : super(key: key);
 
@@ -23,6 +25,7 @@ class SmallText extends StatelessWidget {
       style: TextStyle(
         color: color,
         decoration: textDecoration,
+        decorationColor: AppColor.mainColor1,
         fontSize: size,
         fontWeight: fontWeight
       ),

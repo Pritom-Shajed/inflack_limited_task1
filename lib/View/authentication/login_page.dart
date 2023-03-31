@@ -27,30 +27,36 @@ class LoginPage extends StatelessWidget {
             children: [
               //image section
               Stack(
+                alignment: Alignment.center,
                 children: [
                   SizedBox(
-                    width: Dimensions.screenWidth,
+                    width: Dimensions.loginParticlesWidth,
+                    height: Dimensions.loginParticlesHeight,
                     child: const Image(
                       image: AssetImage('assets/images/login/particles.png'),
                     ),
                   ),
                   SizedBox(
-                    width: Dimensions.screenWidth,
+                    width: Dimensions.loginVectorWidth,
+                    height: Dimensions.loginVectorHeight,
                     child: const Image(
                       image: AssetImage('assets/images/login/login.png'),
                     ),
                   ),
                 ],
               ),
+              SizedBox(
+                height: Dimensions.height30,
+              ),
               BigText(
                 text: 'সাইন ইন',
-                size: Dimensions.textSize50,
+                size: Dimensions.textSize40,
               ),
               //form fields
               Container(
                 padding: EdgeInsets.symmetric(
-                    horizontal: Dimensions.height30,
-                    vertical: Dimensions.height40),
+                    horizontal: Dimensions.height20,
+                    vertical: Dimensions.height30),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

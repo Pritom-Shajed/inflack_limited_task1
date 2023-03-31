@@ -8,15 +8,23 @@ class Dimensions{
 
   static double appBarHeight = screenHeight/3.69;
 
+  //login page
+  static double loginParticlesHeight = screenHeight/7.03;
+  static double loginParticlesWidth = screenHeight/2.57;
+  static double loginVectorHeight = screenHeight/3.98;
+  static double loginVectorWidth = screenHeight/3.33;
+
   //list view size
   static double listViewSize1 = screenHeight/5.63;
 
   //dynamic height & width
+  static double height5 = screenHeight/163.2;
   static double height10 = screenHeight/81.6;
   static double height15 = screenHeight/54.4;
   static double height20 = screenHeight/40.8;
   static double height25 = screenHeight/32.64;
   static double height30 = screenHeight/27.2;
+  static double height35 = screenHeight/23.31;
   static double height40 = screenHeight/20.4;
   static double height75 = screenHeight/10.88;
   static double height60 = screenHeight/13.6;
@@ -41,8 +49,9 @@ class Dimensions{
   static double textSize16 = screenHeight/51;
   static double textSize18 = screenHeight/68;
   static double textSize20 = screenHeight/40.8;
+  static double textSize24 = screenHeight/34;
   static double textSize14 = screenHeight/58.26;
-  static double textSize50 = screenHeight/16.32;
+  static double textSize40 = screenHeight/20.4;
 
   //dynamic icon size
   static double iconSize13 = screenHeight/62.77;
