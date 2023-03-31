@@ -60,11 +60,11 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomTextField(hintText: 'ফোন নম্বর'),
+                    CustomTextField(hintText: 'ফোন নম্বর', inputType: TextInputType.number,),
                     SizedBox(
                       height: Dimensions.height20,
                     ),
-                    CustomTextField(hintText: 'পাসওয়ার্ড'),
+                    CustomTextField(hintText: 'পাসওয়ার্ড', obscureText: true,),
                     SizedBox(
                       height: Dimensions.height15,
                     ),
