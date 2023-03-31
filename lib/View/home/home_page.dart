@@ -49,6 +49,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         toolbarHeight: Dimensions.appBarHeight,
         flexibleSpace: Container(
           height: Dimensions.appBarHeight,
@@ -130,10 +131,10 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: Obx(
-        () => tabs[_controller.currentIndex],
+        () => tabs[_controller.tabIndex],
       ),
       bottomNavigationBar: Obx(() => BottomNavigationBar(
-            currentIndex: _controller.currentIndex,
+            currentIndex: _controller.tabIndex,
             elevation: 20,
             type: BottomNavigationBarType.fixed,
             selectedItemColor: AppColor.mainColor2,
@@ -143,7 +144,7 @@ class HomePage extends StatelessWidget {
               BottomNavigationBarItem(
                 icon: Image.asset(
                   'assets/icons/menu.png',
-                  color: _controller.currentIndex == 0
+                  color: _controller.tabIndex == 0
                       ? AppColor.mainColor2
                       : AppColor.greyColor,
                 ),
@@ -152,7 +153,7 @@ class HomePage extends StatelessWidget {
               BottomNavigationBarItem(
                   icon: Image.asset(
                     'assets/icons/inbox.png',
-                    color: _controller.currentIndex == 1
+                    color: _controller.tabIndex == 1
                         ? AppColor.mainColor2
                         : AppColor.greyColor,
                   ),
@@ -160,7 +161,7 @@ class HomePage extends StatelessWidget {
               BottomNavigationBarItem(
                   icon: Image.asset(
                     'assets/icons/dashboard.png',
-                    color: _controller.currentIndex == 2
+                    color: _controller.tabIndex == 2
                         ? AppColor.mainColor2
                         : AppColor.greyColor,
                   ),
@@ -168,7 +169,7 @@ class HomePage extends StatelessWidget {
               BottomNavigationBarItem(
                   icon: Image.asset(
                     'assets/icons/profile.png',
-                    color: _controller.currentIndex == 3
+                    color: _controller.tabIndex == 3
                         ? AppColor.mainColor2
                         : AppColor.greyColor,
                   ),

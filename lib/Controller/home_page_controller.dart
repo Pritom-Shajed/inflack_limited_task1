@@ -1,16 +1,16 @@
 import 'package:get/get.dart';
 
 class HomePageController extends GetxController{
-  final _currentIndex = 2.obs;
+  final _tabIndex = 2.obs;
 
 
-  get currentIndex => _currentIndex.value;
+  get tabIndex => _tabIndex.value;
 
-  set currentIndex(value) {
-    _currentIndex.value = value;
+  set tabIndex(value) {
+    _tabIndex.value = value;
   }
 
   updateIndex(int index){
-    currentIndex = index;
+    tabIndex = index;
   }
 }
