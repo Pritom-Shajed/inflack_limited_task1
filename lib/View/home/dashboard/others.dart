@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inflack_limited/Model/model.dart';
 import 'package:inflack_limited/Utils/colors.dart';
 import 'package:inflack_limited/Utils/dimensions.dart';
 import 'package:inflack_limited/Widgets/big_text.dart';
@@ -12,24 +13,9 @@ class Others extends StatelessWidget {
 
   Others({Key? key, required this.titleText, required this.itemText})
       : super(key: key);
+  final othersInfo = Model.othersInfo;
 
-  final images = [
-    'assets/images/schedule.png',
-    'assets/images/grade_sheet.png',
-    'assets/images/routine.png',
-    'assets/images/schedule.png',
-    'assets/images/grade_sheet.png',
-    'assets/images/routine.png',
-  ];
 
-  final texts = [
-    'শ্রেণী কার্যক্রম',
-    'গ্রেড শীট',
-    'রুটিন',
-    'শ্রেণী কার্যক্রম',
-    'গ্রেড শীট',
-    'রুটিন',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +26,7 @@ class Others extends StatelessWidget {
           children: [
             BigText(text: titleText),
             InkWell(
-              onTap: (){},
+              onTap: () {},
               child: Row(
                 children: [
                   SmallText(
@@ -65,7 +51,7 @@ class Others extends StatelessWidget {
             height: Dimensions.listViewSize1,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: images.length,
+                itemCount: othersInfo.length,
                 itemBuilder: (context, index) {
                   return Container(
                       padding: EdgeInsets.all(Dimensions.height20),
@@ -89,12 +75,12 @@ class Others extends StatelessWidget {
                         children: [
                           SizedBox(
                             width: Dimensions.width50,
-                            child: Image.asset(images[index]),
+                            child: Image.asset(othersInfo[index]['icon']),
                           ),
                           SizedBox(
                             height: Dimensions.height10,
                           ),
-                          MediumText(text: texts[index]),
+                          MediumText(text: othersInfo[index]['title']),
                         ],
                       ));
                 })),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inflack_limited/Model/model.dart';
 import 'package:inflack_limited/Utils/colors.dart';
 import 'package:inflack_limited/Utils/dimensions.dart';
 import 'package:inflack_limited/Widgets/big_text.dart';
@@ -8,24 +9,9 @@ import 'package:inflack_limited/Widgets/small_text.dart';
 
 class ClassActivities extends StatelessWidget {
   final String titleText;
+  final classActivity = Model.classActivity;
 
   ClassActivities({Key? key, required this.titleText}) : super(key: key);
-
-  final subjectIcon = [
-    'assets/images/biology.png',
-    'assets/images/science.png',
-  ];
-
-  final subjectTitle = [
-    'জীব বিজ্ঞান',
-    'পদার্থ বিজ্ঞান',
-  ];
-
-  final activityDetails = [
-    'হোম ওয়ার্ক',
-    'কোষ বিভাজন',
-    'সৃজনশীল ১ - ৩',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +43,7 @@ class ClassActivities extends StatelessWidget {
         ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: subjectTitle.length,
+            itemCount: classActivity.length,
             itemBuilder: (context, index) {
               return Container(
                 padding: EdgeInsets.symmetric(
@@ -86,7 +72,7 @@ class ClassActivities extends StatelessWidget {
                                 ),
                                 SizedBox(
                                   height: Dimensions.height20,
-                                  child: Image.asset(subjectIcon[index]),
+                                  child: Image.asset(classActivity[index]['icon']),
                                 )
                               ],
                             ),
@@ -101,7 +87,7 @@ class ClassActivities extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       MediumText(
-                                        text: subjectTitle[index],
+                                        text: classActivity[index]['title'].toString(),
                                         color: AppColor.mainColor2,
                                         size: Dimensions.textSize16,
                                       ),
@@ -120,7 +106,7 @@ class ClassActivities extends StatelessWidget {
                                         size: Dimensions.iconSize13,
                                       ),
                                       SmallText(
-                                        text: ' ৭ই আগষ্ট',
+                                        text: classActivity[index]['date'],
                                         fontWeight: FontWeight.normal,
                                       ),
                                     ],
@@ -172,27 +158,41 @@ class ClassActivities extends StatelessWidget {
                           children: List.generate(
                               3,
                               (index) => Padding(
-                                    padding: const EdgeInsets.only(top: 8),
+                                    padding:  EdgeInsets.only(top: Dimensions.height8,right: Dimensions.height8),
                                     child: MediumText(
                                       text: ':',
                                       color: AppColor.mainColor2,
                                     ),
                                   )),
                         ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: Dimensions.height10,
+                            ),
+                            MediumText(
+                              text: classActivity[index]['activity']['type'],
+                              color: AppColor.primaryTextColor,
+                            ),
+                            SizedBox(
+                              height: Dimensions.height10,
+                            ),
+                            MediumText(
+                              text: classActivity[index]['activity']['chapter'],
+                              color: AppColor.primaryTextColor,
+                            ),
+                            SizedBox(
+                              height: Dimensions.height10,
+                            ),
+                            MediumText(
+                              text: classActivity[index]['activity']['comments'],
+                              color: AppColor.primaryTextColor,
+                            ),
+                          ],
+                        ),
                         SizedBox(
                           width: Dimensions.height10,
-                        ),
-                        Wrap(
-                          direction: Axis.vertical,
-                          children: List.generate(
-                              activityDetails.length,
-                              (index) => Padding(
-                                    padding: const EdgeInsets.only(top: 8),
-                                    child: MediumText(
-                                      text: activityDetails[index],
-                                      color: AppColor.primaryTextColor,
-                                    ),
-                                  )),
                         ),
                       ],
                     )

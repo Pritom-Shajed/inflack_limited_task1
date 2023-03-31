@@ -19,6 +19,7 @@ class Dimensions{
 
   //dynamic height & width
   static double height5 = screenHeight/163.2;
+  static double height8 = screenHeight/102;
   static double height10 = screenHeight/81.6;
   static double height15 = screenHeight/54.4;
   static double height20 = screenHeight/40.8;
@@ -29,11 +30,11 @@ class Dimensions{
   static double height75 = screenHeight/10.88;
   static double height60 = screenHeight/13.6;
 
-  static double width60 = screenWidth/7.2;
   static double width15 = screenWidth/28.8;
   static double width20 = screenWidth/21.6;
   static double width25 = screenHeight/32.64;
   static double width50 = screenHeight/16.32;
+  static double width60 = screenWidth/7.2;
   static double width245 = screenWidth/1.76;
 
   //dynamic radius

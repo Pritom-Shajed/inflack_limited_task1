@@ -7,10 +7,20 @@ import 'package:inflack_limited/View/home/dashboard/dashboard_page.dart';
 import 'package:inflack_limited/Widgets/combined_text.dart';
 import 'package:inflack_limited/Widgets/small_text.dart';
 
-class HomePage extends StatelessWidget {
+import '../../Model/model.dart';
+
+class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final HomePageController _controller = Get.find();
+  int? prepIndex;
+
+  final date = Model.days;
 
   final tabs = [
     const Center(
@@ -25,25 +35,7 @@ class HomePage extends StatelessWidget {
     ),
   ];
 
-  final days = [
-    'শনি',
-    'রবি',
-    'সোম',
-    'মঙ্গল',
-    'বুধ',
-    'বৃহঃ',
-    'শুক্র',
-  ];
 
-  final dates = [
-    '১২',
-    '১৩',
-    '১৪',
-    '১৫',
-    '১৬',
-    '১৭',
-    '১৮',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -103,25 +95,42 @@ class HomePage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: List.generate(
-                      days.length,
-                      (index) => Container(
-                            padding: EdgeInsets.all(Dimensions.radius8),
-                            decoration: BoxDecoration(
-                                color: Colors.transparent,
-                                borderRadius:
-                                    BorderRadius.circular(Dimensions.radius8)),
-                            child: Column(
-                              children: [
-                                SmallText(
-                                  text: days[index],
-                                  color: Colors.white60,
-                                ),
-                                SmallText(
-                                  text: dates[index],
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ],
+                      date.length,
+                      (index) => InkWell(
+                            onTap: () {
+                              if (date[index]['isSelected'] == false) {
+                                date[index]['isSelected'] = true;
+                              } else {
+                                date[index]['isSelected'] = false;
+                              }
+
+                              if (prepIndex != null) {
+                                date[prepIndex!]['isSelected'] = false;
+                              }
+                              prepIndex = index;
+                              setState(() {});
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(Dimensions.radius8),
+                              decoration: BoxDecoration(
+                                  color: date[index]['isSelected'] == false
+                                      ? Colors.transparent
+                                      : Colors.white,
+                                  borderRadius: BorderRadius.circular(
+                                      Dimensions.radius8)),
+                              child: Column(
+                                children: [
+                                  SmallText(
+                                    text: date[index]['day'],
+                                    color: date[index]['isSelected'] == false ? Colors.white60 : AppColor.mainColor1,
+                                  ),
+                                  SmallText(
+                                    text: date[index]['date'],
+                                    color: date[index]['isSelected'] == false ? Colors.white : AppColor.mainColor1,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ],
+                              ),
                             ),
                           )),
                 ),
@@ -163,8 +172,7 @@ class HomePage extends StatelessWidget {
                     'assets/icons/dashboard.png',
                     color: _controller.tabIndex == 2
                         ? AppColor.mainColor2
-                        : AppColor.greyColor,
-                  ),
+                        : AppColor.greyColor,),
                   label: 'ড্যাশবোর্ড'),
               BottomNavigationBarItem(
                   icon: Image.asset(

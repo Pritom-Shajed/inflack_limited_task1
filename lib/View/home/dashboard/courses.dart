@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inflack_limited/Model/model.dart';
 import 'package:inflack_limited/Utils/colors.dart';
 import 'package:inflack_limited/Utils/dimensions.dart';
 import 'package:inflack_limited/Widgets/big_text.dart';
@@ -11,25 +12,8 @@ class Courses extends StatelessWidget {
   final String itemText;
   final String itemImg;
   Courses({Key? key, required this.titleText, required this.itemText, required this.itemImg}) : super(key: key);
+  final courseInfo = Model.courseInfo;
 
-
-  final images = [
-    'assets/images/science.png',
-    'assets/images/math_large.png',
-    'assets/images/business_studies.png',
-    'assets/images/science.png',
-    'assets/images/math_large.png',
-    'assets/images/business_studies.png',
-  ];
-
-  final texts = [
-    'বিজ্ঞান',
-    'গণিত',
-    'ব্যবসা শিখা',
-    'বিজ্ঞান',
-    'গণিত',
-    'ব্যবসা শিখা',
-  ];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -64,7 +48,7 @@ class Courses extends StatelessWidget {
             height: Dimensions.listViewSize1,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: images.length,
+                itemCount: courseInfo.length,
                 itemBuilder: (context, index){
                   return Container(
                       padding: EdgeInsets.all(Dimensions.height20),
@@ -83,9 +67,9 @@ class Courses extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          SizedBox(width: Dimensions.width50,child: Image.asset(images[index]),),
+                          SizedBox(width: Dimensions.width50,child: Image.asset(courseInfo[index]['icon']),),
                           SizedBox(height: Dimensions.height10,),
-                          MediumText(text: texts[index]),
+                          MediumText(text: courseInfo[index]['title']),
                         ],
                       )
                   );

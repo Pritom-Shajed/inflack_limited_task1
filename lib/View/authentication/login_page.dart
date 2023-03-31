@@ -84,6 +84,7 @@ class LoginPage extends StatelessWidget {
                   ],
                 ),
               ),
+
               //sign in
               CustomButton(onTap: () =>Get.offAllNamed('/home'), text: 'প্রবেশ করুন'),
               SizedBox(

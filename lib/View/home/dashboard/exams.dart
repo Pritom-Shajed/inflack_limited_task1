@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inflack_limited/Model/model.dart';
 import 'package:inflack_limited/Utils/colors.dart';
 import 'package:inflack_limited/Utils/dimensions.dart';
 import 'package:inflack_limited/Widgets/big_text.dart';
@@ -10,24 +11,7 @@ class Exams extends StatelessWidget {
   final String titleText;
 
   Exams({Key? key, required this.titleText}) : super(key: key);
-
-  final subjectIcon = [
-    'assets/images/math.png',
-    'assets/images/biology.png'
-  ];
-  final subjectTitle = [
-    'সাধারণ গণিত',
-    'জীব বিজ্ঞান',
-  ];
-
-  final examTimes = [
-    '১১:৩০ - ১২:০০',
-    '১২:৩০ - ১১:০০'
-  ];
-  final examDetails = [
-    '১৪, ১৫(সরল অংক)',
-    '২০',
-  ];
+  final examInfo = Model.examInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +43,7 @@ class Exams extends StatelessWidget {
         ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: subjectTitle.length,
+            itemCount: examInfo.length,
             itemBuilder: (context,index){
               return Container(
                 padding: EdgeInsets.symmetric(
@@ -88,7 +72,7 @@ class Exams extends StatelessWidget {
                                     ),),
                                 SizedBox(
                                   height: Dimensions.height20,
-                                  child: Image.asset(subjectIcon[index]),
+                                  child: Image.asset(examInfo[index]['icon']),
                                 )
                               ],
                             ),
@@ -103,7 +87,7 @@ class Exams extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                     children: [
                                       MediumText(
-                                        text: subjectTitle[index],
+                                        text: examInfo[index]['title'],
                                         color: AppColor.mainColor2,
                                         size: Dimensions.textSize16,
                                       ),
@@ -122,7 +106,7 @@ class Exams extends StatelessWidget {
                                         size: Dimensions.iconSize13,
                                       ),
                                       SmallText(
-                                        text: ' ${examTimes[index]}',
+                                        text: examInfo[index]['time'],
                                         fontWeight: FontWeight.normal,
                                       ),
                                       SizedBox(
@@ -134,7 +118,7 @@ class Exams extends StatelessWidget {
                                         size: Dimensions.iconSize13,
                                       ),
                                       SmallText(
-                                        text: ' ৭ই আগষ্ট',
+                                        text: examInfo[index]['date'],
                                         fontWeight: FontWeight.normal,
                                       ),
                                     ],
@@ -165,17 +149,28 @@ class Exams extends StatelessWidget {
                         Wrap(
                           direction: Axis.vertical,
                           children: List.generate(2, (index) => Padding(
-                            padding: const EdgeInsets.only(top: 8),
+                            padding: EdgeInsets.only(top: Dimensions.height8,right: Dimensions.height8),
                             child: MediumText(text: ':', color: AppColor.mainColor2,),
                           )),
                         ),
-                        SizedBox(width: Dimensions.height10,),
-                        Wrap(
-                          direction: Axis.vertical,
-                          children: List.generate(examDetails.length, (index) => Padding(
-                            padding: const EdgeInsets.only(top: 8),
-                            child: MediumText(text: examDetails[index], color: AppColor.primaryTextColor,),
-                          )),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: Dimensions.height10,
+                            ),
+                            MediumText(
+                              text: examInfo[index]['details']['chapter'],
+                              color: AppColor.primaryTextColor,
+                            ),
+                            SizedBox(
+                              height: Dimensions.height10,
+                            ),
+                            MediumText(
+                              text: examInfo[index]['details']['marks'],
+                              color: AppColor.primaryTextColor,
+                            ),
+                          ],
                         ),
                       ],
                     )
