@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:inflack_limited/Controller/home_page_controller.dart';
 import 'package:inflack_limited/Utils/colors.dart';
 import 'package:inflack_limited/Utils/dimensions.dart';
 import 'package:inflack_limited/View/home/dashboard/dashboard_page.dart';
 import 'package:inflack_limited/Widgets/combined_text.dart';
 import 'package:inflack_limited/Widgets/small_text.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  HomePage({Key? key}) : super(key: key);
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int _currentIndex = 2;
-
-  Color datesBgColor = Colors.transparent;
+  final HomePageController _controller = Get.find();
 
   final tabs = [
     const Center(
@@ -39,6 +34,7 @@ class _HomePageState extends State<HomePage> {
     'বৃহঃ',
     'শুক্র',
   ];
+
   final dates = [
     '১২',
     '১৩',
@@ -108,10 +104,11 @@ class _HomePageState extends State<HomePage> {
                   children: List.generate(
                       days.length,
                       (index) => Container(
-                        padding: EdgeInsets.all(Dimensions.radius8),
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          borderRadius: BorderRadius.circular(Dimensions.radius8)),
+                            padding: EdgeInsets.all(Dimensions.radius8),
+                            decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                borderRadius:
+                                    BorderRadius.circular(Dimensions.radius8)),
                             child: Column(
                               children: [
                                 SmallText(
@@ -132,54 +129,53 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: tabs[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        elevation: 20,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: AppColor.mainColor2,
-        selectedLabelStyle: const TextStyle(
-            color: AppColor.mainColor2, fontWeight: FontWeight.bold),
-        items: [
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/menu.png',
-              color:
-                  _currentIndex == 0 ? AppColor.mainColor2 : AppColor.greyColor,
-            ),
-            label: 'মেনু',
-          ),
-          BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/icons/inbox.png',
-                color: _currentIndex == 1
-                    ? AppColor.mainColor2
-                    : AppColor.greyColor,
-              ),
-              label: 'ইনবক্স'),
-          BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/icons/dashboard.png',
-                color: _currentIndex == 2
-                    ? AppColor.mainColor2
-                    : AppColor.greyColor,
-              ),
-              label: 'ড্যাশবোর্ড'),
-          BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/icons/profile.png',
-                color: _currentIndex == 3
-                    ? AppColor.mainColor2
-                    : AppColor.greyColor,
-              ),
-              label: 'প্রোফাইল'),
-        ],
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
+      body: Obx(
+        () => tabs[_controller.currentIndex],
       ),
+      bottomNavigationBar: Obx(() => BottomNavigationBar(
+            currentIndex: _controller.currentIndex,
+            elevation: 20,
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: AppColor.mainColor2,
+            selectedLabelStyle: const TextStyle(
+                color: AppColor.mainColor2, fontWeight: FontWeight.bold),
+            items: [
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/icons/menu.png',
+                  color: _controller.currentIndex == 0
+                      ? AppColor.mainColor2
+                      : AppColor.greyColor,
+                ),
+                label: 'মেনু',
+              ),
+              BottomNavigationBarItem(
+                  icon: Image.asset(
+                    'assets/icons/inbox.png',
+                    color: _controller.currentIndex == 1
+                        ? AppColor.mainColor2
+                        : AppColor.greyColor,
+                  ),
+                  label: 'ইনবক্স'),
+              BottomNavigationBarItem(
+                  icon: Image.asset(
+                    'assets/icons/dashboard.png',
+                    color: _controller.currentIndex == 2
+                        ? AppColor.mainColor2
+                        : AppColor.greyColor,
+                  ),
+                  label: 'ড্যাশবোর্ড'),
+              BottomNavigationBarItem(
+                  icon: Image.asset(
+                    'assets/icons/profile.png',
+                    color: _controller.currentIndex == 3
+                        ? AppColor.mainColor2
+                        : AppColor.greyColor,
+                  ),
+                  label: 'প্রোফাইল'),
+            ],
+            onTap: (index) => _controller.updateIndex(index),
+          )),
     );
   }
 }

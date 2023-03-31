@@ -5,10 +5,6 @@ import 'package:inflack_limited/View/home/dashboard/class_activites.dart';
 import 'package:inflack_limited/View/home/dashboard/courses.dart';
 import 'package:inflack_limited/View/home/dashboard/exams.dart';
 import 'package:inflack_limited/View/home/dashboard/others.dart';
-import 'package:inflack_limited/Widgets/big_text.dart';
-import 'package:inflack_limited/Widgets/combined_text.dart';
-import 'package:inflack_limited/Widgets/medium_text.dart';
-import 'package:inflack_limited/Widgets/small_text.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({Key? key}) : super(key: key);
