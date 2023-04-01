@@ -1,7 +1,7 @@
 import 'package:inflack_limited/Model/class_activity_model.dart';
 import 'package:inflack_limited/Model/course_info_model.dart';
 import 'package:inflack_limited/Model/days_model.dart';
-import 'package:inflack_limited/Model/exam_info_mode.dart';
+import 'package:inflack_limited/Model/exam_info_model.dart';
 import 'package:inflack_limited/Model/others_info_model.dart';
 
 ///ধরে নিলাম api থেকে data এই json এ আসবে
