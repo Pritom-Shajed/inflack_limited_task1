@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:inflack_limited/Model/model.dart';
+import 'package:inflack_limited/Model/factory_data.dart';
 import 'package:inflack_limited/Utils/colors.dart';
 import 'package:inflack_limited/Utils/dimensions.dart';
 import 'package:inflack_limited/Widgets/big_text.dart';
-import 'package:inflack_limited/Widgets/combined_text.dart';
 import 'package:inflack_limited/Widgets/medium_text.dart';
 import 'package:inflack_limited/Widgets/small_text.dart';
 
 class ClassActivities extends StatelessWidget {
   final String titleText;
-  final classActivity = Model.classActivity;
 
   ClassActivities({Key? key, required this.titleText}) : super(key: key);
 
@@ -43,8 +41,9 @@ class ClassActivities extends StatelessWidget {
         ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: classActivity.length,
+            itemCount: FactoryData.classActivity.length,
             itemBuilder: (context, index) {
+              final classActivity = FactoryData.classActivity[index];
               return Container(
                 padding: EdgeInsets.symmetric(
                     vertical: Dimensions.height15,
@@ -72,7 +71,7 @@ class ClassActivities extends StatelessWidget {
                                 ),
                                 SizedBox(
                                   height: Dimensions.height20,
-                                  child: Image.asset(classActivity[index]['icon']),
+                                  child: Image.asset(classActivity.icon),
                                 )
                               ],
                             ),
@@ -87,7 +86,7 @@ class ClassActivities extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       MediumText(
-                                        text: classActivity[index]['title'].toString(),
+                                        text: classActivity.title,
                                         color: AppColor.mainColor2,
                                         size: Dimensions.textSize16,
                                       ),
@@ -106,7 +105,7 @@ class ClassActivities extends StatelessWidget {
                                         size: Dimensions.iconSize13,
                                       ),
                                       SmallText(
-                                        text: classActivity[index]['date'],
+                                        text: classActivity.date,
                                         fontWeight: FontWeight.normal,
                                       ),
                                     ],
@@ -172,21 +171,21 @@ class ClassActivities extends StatelessWidget {
                               height: Dimensions.height10,
                             ),
                             MediumText(
-                              text: classActivity[index]['activity']['type'],
+                              text: classActivity.activity.type,
                               color: AppColor.primaryTextColor,
                             ),
                             SizedBox(
                               height: Dimensions.height10,
                             ),
                             MediumText(
-                              text: classActivity[index]['activity']['chapter'],
+                              text: classActivity.activity.chapter,
                               color: AppColor.primaryTextColor,
                             ),
                             SizedBox(
                               height: Dimensions.height10,
                             ),
                             MediumText(
-                              text: classActivity[index]['activity']['comments'],
+                              text: classActivity.activity.comments,
                               color: AppColor.primaryTextColor,
                             ),
                           ],

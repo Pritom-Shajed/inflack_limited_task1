@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:inflack_limited/Utils/dimensions.dart';
 
 class BigText extends StatelessWidget {
   String text;

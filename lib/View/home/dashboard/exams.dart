@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inflack_limited/Model/model.dart';
+import 'package:inflack_limited/Model/factory_data.dart';
 import 'package:inflack_limited/Utils/colors.dart';
 import 'package:inflack_limited/Utils/dimensions.dart';
 import 'package:inflack_limited/Widgets/big_text.dart';
@@ -11,7 +11,6 @@ class Exams extends StatelessWidget {
   final String titleText;
 
   Exams({Key? key, required this.titleText}) : super(key: key);
-  final examInfo = Model.examInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +42,9 @@ class Exams extends StatelessWidget {
         ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: examInfo.length,
+            itemCount: FactoryData.examInfo.length,
             itemBuilder: (context,index){
+              final examInfo = FactoryData.examInfo[index];
               return Container(
                 padding: EdgeInsets.symmetric(
                     vertical: Dimensions.height15,
@@ -72,7 +72,7 @@ class Exams extends StatelessWidget {
                                     ),),
                                 SizedBox(
                                   height: Dimensions.height20,
-                                  child: Image.asset(examInfo[index]['icon']),
+                                  child: Image.asset(examInfo.icon),
                                 )
                               ],
                             ),
@@ -87,7 +87,7 @@ class Exams extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                     children: [
                                       MediumText(
-                                        text: examInfo[index]['title'],
+                                        text: examInfo.title,
                                         color: AppColor.mainColor2,
                                         size: Dimensions.textSize16,
                                       ),
@@ -106,7 +106,7 @@ class Exams extends StatelessWidget {
                                         size: Dimensions.iconSize13,
                                       ),
                                       SmallText(
-                                        text: examInfo[index]['time'],
+                                        text: examInfo.time,
                                         fontWeight: FontWeight.normal,
                                       ),
                                       SizedBox(
@@ -118,7 +118,7 @@ class Exams extends StatelessWidget {
                                         size: Dimensions.iconSize13,
                                       ),
                                       SmallText(
-                                        text: examInfo[index]['date'],
+                                        text: examInfo.date,
                                         fontWeight: FontWeight.normal,
                                       ),
                                     ],
@@ -160,14 +160,14 @@ class Exams extends StatelessWidget {
                               height: Dimensions.height10,
                             ),
                             MediumText(
-                              text: examInfo[index]['details']['chapter'],
+                              text: examInfo.details.chapter,
                               color: AppColor.primaryTextColor,
                             ),
                             SizedBox(
                               height: Dimensions.height10,
                             ),
                             MediumText(
-                              text: examInfo[index]['details']['marks'],
+                              text: examInfo.details.marks,
                               color: AppColor.primaryTextColor,
                             ),
                           ],

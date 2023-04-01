@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inflack_limited/Model/model.dart';
+import 'package:inflack_limited/Model/factory_data.dart';
 import 'package:inflack_limited/Utils/colors.dart';
 import 'package:inflack_limited/Utils/dimensions.dart';
 import 'package:inflack_limited/Widgets/big_text.dart';
@@ -13,7 +13,6 @@ class Others extends StatelessWidget {
 
   Others({Key? key, required this.titleText, required this.itemText})
       : super(key: key);
-  final othersInfo = Model.othersInfo;
 
 
 
@@ -51,8 +50,9 @@ class Others extends StatelessWidget {
             height: Dimensions.listViewSize1,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: othersInfo.length,
+                itemCount: FactoryData.othersInfo.length,
                 itemBuilder: (context, index) {
+                  final othersInfo = FactoryData.othersInfo[index];
                   return Container(
                       padding: EdgeInsets.all(Dimensions.height20),
                       margin: EdgeInsets.symmetric(
@@ -75,12 +75,12 @@ class Others extends StatelessWidget {
                         children: [
                           SizedBox(
                             width: Dimensions.width50,
-                            child: Image.asset(othersInfo[index]['icon']),
+                            child: Image.asset(othersInfo.icon),
                           ),
                           SizedBox(
                             height: Dimensions.height10,
                           ),
-                          MediumText(text: othersInfo[index]['title']),
+                          MediumText(text: othersInfo.title),
                         ],
                       ));
                 })),

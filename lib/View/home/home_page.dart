@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inflack_limited/Controller/home_page_controller.dart';
+import 'package:inflack_limited/Model/factory_data.dart';
 import 'package:inflack_limited/Utils/colors.dart';
 import 'package:inflack_limited/Utils/dimensions.dart';
 import 'package:inflack_limited/View/home/dashboard/dashboard_page.dart';
 import 'package:inflack_limited/Widgets/combined_text.dart';
 import 'package:inflack_limited/Widgets/small_text.dart';
-
-import '../../Model/model.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -19,8 +18,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final HomePageController _controller = Get.find();
   int? prepIndex;
-
-  final date = Model.days;
 
   final tabs = [
     const Center(
@@ -71,10 +68,10 @@ class _HomePageState extends State<HomePage> {
                             text2: 'হাফিয নকিব',
                             fontWeight1: FontWeight.normal,
                             fontWeight2: FontWeight.bold,
-                            textSize1: Dimensions.textSize18,
-                            textSize2: Dimensions.textSize18),
+                            textSize1: Dimensions.textSize16,
+                            textSize2: Dimensions.textSize16),
                         SizedBox(
-                          height: Dimensions.height10,
+                          height: Dimensions.height5,
                         ),
                         CombinedText(
                             text1: 'ইস্কুল',
@@ -95,44 +92,47 @@ class _HomePageState extends State<HomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: List.generate(
-                      date.length,
-                      (index) => InkWell(
-                            onTap: () {
-                              if (date[index]['isSelected'] == false) {
-                                date[index]['isSelected'] = true;
-                              } else {
-                                date[index]['isSelected'] = false;
-                              }
+                      FactoryData.days.length,
+                      (index) {
+                        final date = FactoryData.days;
+                       return InkWell(
+                          onTap: () {
+                            if (date[index].isSelected == false) {
+                              date[index].isSelected = true;
+                            } else {
+                              date[index].isSelected = false;
+                            }
 
-                              if (prepIndex != null) {
-                                date[prepIndex!]['isSelected'] = false;
-                              }
-                              prepIndex = index;
-                              setState(() {});
-                            },
-                            child: Container(
-                              padding: EdgeInsets.all(Dimensions.radius8),
-                              decoration: BoxDecoration(
-                                  color: date[index]['isSelected'] == false
-                                      ? Colors.transparent
-                                      : Colors.white,
-                                  borderRadius: BorderRadius.circular(
-                                      Dimensions.radius8)),
-                              child: Column(
-                                children: [
-                                  SmallText(
-                                    text: date[index]['day'],
-                                    color: date[index]['isSelected'] == false ? Colors.white60 : AppColor.mainColor1,
-                                  ),
-                                  SmallText(
-                                    text: date[index]['date'],
-                                    color: date[index]['isSelected'] == false ? Colors.white : AppColor.mainColor1,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ],
-                              ),
+                            if (prepIndex != null) {
+                              date[prepIndex!].isSelected = false;
+                            }
+                            prepIndex = index;
+                            setState(() {});
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(Dimensions.radius8),
+                            decoration: BoxDecoration(
+                                color: date[index].isSelected == false
+                                    ? Colors.transparent
+                                    : Colors.white,
+                                borderRadius: BorderRadius.circular(
+                                    Dimensions.radius8)),
+                            child: Column(
+                              children: [
+                                SmallText(
+                                  text: date[index].day,
+                                  color: date[index].isSelected == false ? Colors.white60 : AppColor.mainColor1,
+                                ),
+                                SmallText(
+                                  text: date[index].date,
+                                  color: date[index].isSelected == false ? Colors.white : AppColor.mainColor1,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ],
                             ),
-                          )),
+                          ),
+                        );
+                      }),
                 ),
               ],
             ),
